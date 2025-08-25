@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -35,9 +34,6 @@ interface CheckoutForm {
 const CheckoutPage = () => {
   const { state: cartState, getTotalPrice, clearCart } = useCart();
   const { state: authState } = useAuth();
-  const router = useRouter();
-  
-  const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [formData, setFormData] = useState<CheckoutForm>({
@@ -147,15 +143,15 @@ const CheckoutPage = () => {
             <div className="mb-8">
               <h1 className="text-2xl font-light text-gray-900 mb-2">Checkout</h1>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
-                <span className={`${currentStep >= 1 ? 'text-gray-900' : ''}`}>
+                <span className="text-gray-900">
                   1. Information
                 </span>
                 <span>→</span>
-                <span className={`${currentStep >= 2 ? 'text-gray-900' : ''}`}>
+                <span className="text-gray-900">
                   2. Shipping
                 </span>
                 <span>→</span>
-                <span className={`${currentStep >= 3 ? 'text-gray-900' : ''}`}>
+                <span className="text-gray-900">
                   3. Payment
                 </span>
               </div>

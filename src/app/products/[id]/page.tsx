@@ -1,21 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductCard from '@/components/ProductCard';
 import { useCart } from '@/context/CartContext';
 import { getProductById, getProductsByCategory } from '@/lib/sampleData';
 
-interface ProductDetailPageProps {
-  params: {
-    id: string;
-  };
-}
-
-const ProductDetailPage = ({ params }: ProductDetailPageProps) => {
-  const product = getProductById(params.id);
+const ProductDetailPage = () => {
+  const params = useParams();
+  const id = params.id as string;
+  const product = getProductById(id);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addToCart, openCart } = useCart();
