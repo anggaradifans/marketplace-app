@@ -1,103 +1,263 @@
 import Image from "next/image";
+import Link from "next/link";
+import ProductCard from "@/components/ProductCard";
+import { getFeaturedProducts, categories, sampleProducts } from "@/lib/sampleData";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const featuredProducts = getFeaturedProducts();
+  const bestSellers = sampleProducts.filter(p => ['1', '3', '6'].includes(p.id));
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="bg-white">
+      {/* Enhanced Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-gray-100 rounded-full opacity-30 rotate-45"></div>
+        <div className="absolute bottom-20 left-10 w-32 h-32 bg-gray-200 rounded-full opacity-20"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-left">
+              <div className="inline-block mb-6">
+                <span className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-light uppercase tracking-widest rounded-full">
+                  Premium Design Collection
+                </span>
+              </div>
+              <h1 className="text-7xl xl:text-8xl font-extralight text-gray-900 mb-8 tracking-tight leading-none">
+                Timeless
+                <br />
+                <span className="italic text-gray-600">Modern</span>
+                <br />
+                Elegance
+              </h1>
+              <p className="text-xl text-gray-600 font-light leading-relaxed mb-12 max-w-2xl">
+                Discover premium furniture, lighting, and accessories that embody the perfect balance of 
+                <span className="italic">form</span> and <span className="italic">function</span>.
+              </p>
+              <div className="flex flex-col gap-6 max-w-sm">
+                <Link
+                  href="/furniture"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white font-light uppercase tracking-wide hover:from-gray-800 hover:to-gray-700 transition-all duration-300 shadow-md hover:shadow-lg text-sm"
+                >
+                  Explore Collection
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center justify-center px-8 py-4 border border-gray-300 text-gray-700 font-light uppercase tracking-wide hover:border-gray-900 hover:text-gray-900 transition-all duration-300 text-sm"
+                >
+                  Our Story
+                </Link>
+              </div>
+            </div>
+            
+            <div className="relative block">
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2 hover:rotate-1 transition-transform duration-700 w-full max-w-lg mx-auto lg:mx-0">
+                <Image
+                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=750&fit=crop&crop=center"
+                  alt="Modern living room"
+                  width={600}
+                  height={750}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
+              <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-lg overflow-hidden shadow-lg -rotate-6">
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop&crop=center"
+                  alt="Design detail"
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Stats/Highlights Section - Testing Tailwind */}
+      <section className="py-16 border-y border-gray-100 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-2">15+</div>
+              <div className="text-sm text-gray-600 font-light uppercase tracking-wide">Expert Designers</div>
+            </div>
+            <div className="p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-2">100%</div>
+              <div className="text-sm text-gray-600 font-light uppercase tracking-wide">Sustainable Materials</div>
+            </div>
+            <div className="p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-2">50+</div>
+              <div className="text-sm text-gray-600 font-light uppercase tracking-wide">Curated Pieces</div>
+            </div>
+            <div className="p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-2">25</div>
+              <div className="text-sm text-gray-600 font-light uppercase tracking-wide">Years Experience</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Categories Section */}
+      <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-sm font-light uppercase tracking-widest rounded-full mb-6">
+              Discover Our Collections
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+              Thoughtfully Curated Categories
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+              Each collection represents the pinnacle of contemporary design—where minimalism meets functionality, 
+              creating pieces that elevate your everyday living.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {categories.map((category, index) => (
+              <Link
+                key={category.name}
+                href={`/${category.name.toLowerCase()}`}
+                className="group block cursor-pointer"
+              >
+                <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+                  <div className="aspect-[5/4] overflow-hidden relative">
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      width={600}
+                      height={480}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                      <svg className="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-2xl font-light text-gray-900 group-hover:text-gray-700 transition-colors duration-200">
+                        {category.name}
+                      </h3>
+                      <span className="text-sm text-gray-400 font-light">
+                        0{index + 1}
+                      </span>
+                    </div>
+                    <p className="text-gray-600 font-light leading-relaxed mb-6">
+                      {category.description}
+                    </p>
+                    <div className="flex items-center text-sm font-medium text-gray-900 uppercase tracking-wide group-hover:text-gray-700 transition-colors duration-200">
+                      Explore Collection
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Best Sellers Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+            <div>
+              <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-sm font-light uppercase tracking-widest rounded-full mb-6">
+                Customer Favorites
+              </span>
+              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+                Best Selling Designs
+              </h2>
+              <p className="text-xl text-gray-600 font-light leading-relaxed mb-8">
+                These exceptional pieces have captured the hearts of design enthusiasts worldwide, 
+                combining timeless aesthetics with everyday functionality.
+              </p>
+              <Link
+                href="/products"
+                className="inline-flex items-center text-gray-900 font-medium uppercase tracking-wide hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+              >
+                View All Products
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=450&fit=crop&crop=center"
+                  alt="Modern interior"
+                  width={600}
+                  height={450}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {bestSellers.map((product) => (
+              <div key={product.id} className="group">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Showcase */}
+      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-700 text-sm font-light uppercase tracking-widest rounded-full mb-6">
+              New Arrivals
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+              Latest Additions
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+              Fresh designs from our favorite creators, each piece carefully selected to enhance 
+              your living space with authentic modern elegance.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-16">
+            {featuredProducts.map((product, index) => (
+              <div 
+                key={product.id} 
+                className="group transform hover:-translate-y-2 transition-all duration-500 animate-fade-in"
+                style={{
+                  animationDelay: `${index * 150}ms`
+                }}
+              >
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link
+              href="/products"
+              className="inline-flex items-center px-8 py-4 bg-gray-900 text-white font-light uppercase tracking-wide hover:bg-gray-800 transition-colors duration-300 cursor-pointer"
+            >
+              Discover All Products
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
